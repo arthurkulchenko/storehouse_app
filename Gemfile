@@ -17,6 +17,7 @@ gem 'jbuilder', '~> 2.5'
 
 # gem 'mysql2'
 # gem 'thinking-sphinx'
+gem 'friendly_id'
 gem 'pundit'
 gem 'responders'
 gem 'haml'
