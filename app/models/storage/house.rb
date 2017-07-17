@@ -1,3 +1,3 @@
-class House < Storage
+class Storage::House < Storage
   include StorageAttributes
 end

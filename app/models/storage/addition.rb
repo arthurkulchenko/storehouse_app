@@ -1,3 +1,3 @@
-class Addition < Storage
+class Storage::Addition < Storage
   include StorageAttributes
 end

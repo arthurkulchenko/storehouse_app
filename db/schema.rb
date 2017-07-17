@@ -10,10 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170712113806) do
+ActiveRecord::Schema.define(version: 20170717074744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chemical_consumables", force: :cascade do |t|
+    t.string "title"
+    t.string "pack_form"
+    t.integer "amount"
+    t.integer "ph_rate"
+    t.string "additional_info"
+    t.string "purpose"
+    t.string "possessor_type"
+    t.bigint "possessor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["possessor_id", "possessor_type"], name: "index_chemical_consumables_on_possessor_id_and_possessor_type"
+    t.index ["possessor_type", "possessor_id"], name: "index_chemical_consumables_on_possessor_type_and_possessor_id"
+  end
+
+  create_table "consumables", force: :cascade do |t|
+    t.string "title"
+    t.string "pack_form"
+    t.integer "amount"
+    t.string "possessor_type"
+    t.bigint "possessor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["possessor_id", "possessor_type"], name: "index_consumables_on_possessor_id_and_possessor_type"
+    t.index ["possessor_type", "possessor_id"], name: "index_consumables_on_possessor_type_and_possessor_id"
+  end
+
+  create_table "equipment", force: :cascade do |t|
+    t.string "title"
+    t.string "owner"
+    t.string "kind"
+    t.string "additional_info"
+    t.integer "amount"
+    t.string "possessor_type"
+    t.bigint "possessor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["possessor_id", "possessor_type"], name: "index_equipment_on_possessor_id_and_possessor_type"
+    t.index ["possessor_type", "possessor_id"], name: "index_equipment_on_possessor_type_and_possessor_id"
+  end
 
   create_table "facilities", force: :cascade do |t|
     t.string "name"
@@ -22,6 +63,18 @@ ActiveRecord::Schema.define(version: 20170712113806) do
     t.string "manager"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.string "title"
+    t.integer "amount"
+    t.string "kind"
+    t.string "possessor_type"
+    t.bigint "possessor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["possessor_id", "possessor_type"], name: "index_inventories_on_possessor_id_and_possessor_type"
+    t.index ["possessor_type", "possessor_id"], name: "index_inventories_on_possessor_type_and_possessor_id"
   end
 
   create_table "storages", force: :cascade do |t|

@@ -1,3 +1,3 @@
-class Application < Storage
+class Storage::Application < Storage
   include StorageAttributes
 end
