@@ -13,4 +13,5 @@ User.create(name:"First User", email: "mail@mail.com", password: "123456")
     address: "address ##{f}",
     manager: "manager ##{f}",
   	)
+
 end

@@ -16,14 +16,14 @@ ActiveRecord::Schema.define(version: 20170717074744) do
   enable_extension "plpgsql"
 
   create_table "chemical_consumables", force: :cascade do |t|
-    t.string "title"
-    t.string "pack_form"
-    t.integer "amount"
-    t.integer "ph_rate"
-    t.string "additional_info"
-    t.string "purpose"
+    t.string "title", default: "", null: false
+    t.string "pack_form", default: "", null: false
+    t.integer "amount", default: 0, null: false
+    t.integer "ph_rate", default: 0, null: false
+    t.string "additional_info", default: ""
+    t.string "purpose", default: "", null: false
     t.string "possessor_type"
-    t.bigint "possessor_id"
+    t.bigint "possessor_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["possessor_id", "possessor_type"], name: "index_chemical_consumables_on_possessor_id_and_possessor_type"
@@ -31,11 +31,11 @@ ActiveRecord::Schema.define(version: 20170717074744) do
   end
 
   create_table "consumables", force: :cascade do |t|
-    t.string "title"
-    t.string "pack_form"
-    t.integer "amount"
+    t.string "title", default: "", null: false
+    t.string "pack_form", default: "", null: false
+    t.integer "amount", default: 0, null: false
     t.string "possessor_type"
-    t.bigint "possessor_id"
+    t.bigint "possessor_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["possessor_id", "possessor_type"], name: "index_consumables_on_possessor_id_and_possessor_type"
@@ -43,13 +43,13 @@ ActiveRecord::Schema.define(version: 20170717074744) do
   end
 
   create_table "equipment", force: :cascade do |t|
-    t.string "title"
-    t.string "owner"
-    t.string "kind"
-    t.string "additional_info"
-    t.integer "amount"
+    t.string "title", default: "", null: false
+    t.string "owner", default: "", null: false
+    t.string "kind", default: "", null: false
+    t.string "additional_info", default: ""
+    t.integer "amount", default: 0, null: false
     t.string "possessor_type"
-    t.bigint "possessor_id"
+    t.bigint "possessor_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["possessor_id", "possessor_type"], name: "index_equipment_on_possessor_id_and_possessor_type"
@@ -66,11 +66,11 @@ ActiveRecord::Schema.define(version: 20170717074744) do
   end
 
   create_table "inventories", force: :cascade do |t|
-    t.string "title"
-    t.integer "amount"
-    t.string "kind"
+    t.string "title", default: "", null: false
+    t.integer "amount", default: 0, null: false
+    t.string "kind", default: "", null: false
     t.string "possessor_type"
-    t.bigint "possessor_id"
+    t.bigint "possessor_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["possessor_id", "possessor_type"], name: "index_inventories_on_possessor_id_and_possessor_type"

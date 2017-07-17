@@ -1,10 +1,10 @@
 class CreateConsumables < ActiveRecord::Migration[5.1]
   def change
     create_table :consumables do |t|
-      t.string :title
-      t.string :pack_form
-      t.integer :amount
-      t.belongs_to :possessor, polymorphic: true
+      t.string :title, null: false, default: ""
+      t.string :pack_form, null: false, default: ""
+      t.integer :amount, null: false, default: 0
+      t.belongs_to :possessor, polymorphic: true, null: false
 
       t.timestamps
     end
