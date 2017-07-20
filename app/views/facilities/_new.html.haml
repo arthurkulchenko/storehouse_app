@@ -1,0 +1,11 @@
+= form_for Facility.new, remote: true do |f|
+ = f.text_field :title, value: "Название"
+ %br
+ = f.text_field :address, value: "Адрес"
+ %br
+ = f.text_field :supervisor, value: "Начальник объекта"
+ %br
+ = f.text_field :manager, value: "Менеджер"
+ %br
+ = f.submit 'Создать'
+ / TODO add js obfuscation of default values

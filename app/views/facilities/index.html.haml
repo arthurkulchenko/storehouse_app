@@ -1,3 +1,10 @@
-- @facilities.each do |f|
- = render f
- %br
+.facility-list
+ - @facilities.each do |f|
+  = link_to f.title, f
+  %br
+.new-facility
+ .show-button
+ .showable
+  %h3 Новый объект
+  .new-facility
+   = render partial: 'new'

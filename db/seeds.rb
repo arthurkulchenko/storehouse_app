@@ -8,10 +8,9 @@
 User.create(name:"First User", email: "mail@mail.com", password: "123456")
 5.times do |f|
   Facility.create!(
-    name: "name ##{f}",
-    supervisor: "supervisor ##{f}",
-    address: "address ##{f}",
-    manager: "manager ##{f}",
+                    title: "name ##{f}",
+                    supervisor: "supervisor ##{f}",
+                    address: "address ##{f}",
+                    manager: "manager ##{f}"
   	)
-
 end

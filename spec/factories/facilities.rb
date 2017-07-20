@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :facility do
-    name "MyString"
+    title "MyString"
     supervisor "MyString"
     address "MyString"
     manager "MyString"

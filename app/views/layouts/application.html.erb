@@ -9,6 +9,21 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <% if current_user %>
+    <nav>
+      <ul>
+        <li>
+          <%= link_to "Объекты", facilities_path %>
+        </li>
+        <li>
+          <%= link_to "Заявки", applications_path %>
+        </li>
+        <li>
+          <%= link_to "Выйти", destroy_user_session_path, method: :delete %>
+        </li>
+      </ul>
+    </nav>
+    <%end%>
     <%= yield %>
   </body>
 </html>

@@ -57,10 +57,10 @@ ActiveRecord::Schema.define(version: 20170717074744) do
   end
 
   create_table "facilities", force: :cascade do |t|
-    t.string "name"
-    t.string "supervisor"
-    t.string "address"
-    t.string "manager"
+    t.string "title", default: "", null: false
+    t.string "supervisor", default: "", null: false
+    t.string "address", default: "", null: false
+    t.string "manager", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20170717074744) do
   end
 
   create_table "storages", force: :cascade do |t|
-    t.bigint "facility_id"
+    t.bigint "facility_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["facility_id"], name: "index_storages_on_facility_id"
