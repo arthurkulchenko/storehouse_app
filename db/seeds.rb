@@ -7,10 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create(name:"First User", email: "mail@mail.com", password: "123456")
 5.times do |f|
-  Facility.create!(
+  @facility = Facility.create!(
                     title: "name ##{f}",
                     supervisor: "supervisor ##{f}",
                     address: "address ##{f}",
                     manager: "manager ##{f}"
   	)
+  Storage::Application.create!(facility: @facility)
 end

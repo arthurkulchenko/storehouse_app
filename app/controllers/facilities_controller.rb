@@ -14,7 +14,7 @@ class FacilitiesController < ApplicationController
   end
 
   def update
-  	
+  	@facility.update facilities_params
   end
 
   def destroy
