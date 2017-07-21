@@ -12,6 +12,6 @@ class Facility < ApplicationRecord
   private
 
     def create_new_storehouse
-      Storage::House.create!(facility: self)
+      Storage::House.create!(facility: self, name_class: 'Storage::House')
     end
 end

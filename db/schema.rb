@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20170717074744) do
   create_table "storages", force: :cascade do |t|
     t.bigint "facility_id", null: false
     t.string "status", default: "awaits", null: false
+    t.string "name_class", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["facility_id"], name: "index_storages_on_facility_id"
