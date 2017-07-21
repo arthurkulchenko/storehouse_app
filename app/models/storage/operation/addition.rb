@@ -1,3 +1,3 @@
-class Storage::Operation::Addition < Storage
-  include StorageBasic
+class Storage::Operation::Addition < ApplicationRecord
+  belongs_to :facility
 end

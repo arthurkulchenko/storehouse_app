@@ -1,2 +1,3 @@
-class Storage::House < Storage
+class Storage::House < ApplicationRecord
+  belongs_to :facility
 end
