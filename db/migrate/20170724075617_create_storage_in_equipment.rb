@@ -1,15 +1,15 @@
-class CreateEquipment < ActiveRecord::Migration[5.1]
+class CreateStorageInEquipment < ActiveRecord::Migration[5.1]
   def change
-    create_table :equipment do |t|
+    create_table :storage_in_equipment do |t|
       t.string :title, null: false, default: ""
       t.string :owner, null: false, default: ""
       t.string :kind, null: false, default: ""
       t.string :additional_info, default: ""
       t.integer :amount, null: false, default: 0
-      t.belongs_to :possessor, polymorphic: true, null: false
+      t.belongs_to :por, polymorphic: true, null: false
 
       t.timestamps
     end
-    add_index :equipment, [:possessor_id, :possessor_type]
+    add_index :storage_in_equipment, [:por_id, :por_type]
   end
 end

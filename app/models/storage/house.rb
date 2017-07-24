@@ -1,3 +1,3 @@
 class Storage::House < ApplicationRecord
-  belongs_to :facility
+  include StorageBasic
 end

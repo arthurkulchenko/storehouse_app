@@ -10,51 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717074744) do
+ActiveRecord::Schema.define(version: 20170724082217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "chemical_consumables", force: :cascade do |t|
-    t.string "title", default: "", null: false
-    t.string "pack_form", default: "", null: false
-    t.integer "amount", default: 0, null: false
-    t.integer "ph_rate", default: 0, null: false
-    t.string "additional_info", default: ""
-    t.string "purpose", default: "", null: false
-    t.string "possessor_type"
-    t.bigint "possessor_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["possessor_id", "possessor_type"], name: "index_chemical_consumables_on_possessor_id_and_possessor_type"
-    t.index ["possessor_type", "possessor_id"], name: "index_chemical_consumables_on_possessor_type_and_possessor_id"
-  end
-
-  create_table "consumables", force: :cascade do |t|
-    t.string "title", default: "", null: false
-    t.string "pack_form", default: "", null: false
-    t.integer "amount", default: 0, null: false
-    t.string "possessor_type"
-    t.bigint "possessor_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["possessor_id", "possessor_type"], name: "index_consumables_on_possessor_id_and_possessor_type"
-    t.index ["possessor_type", "possessor_id"], name: "index_consumables_on_possessor_type_and_possessor_id"
-  end
-
-  create_table "equipment", force: :cascade do |t|
-    t.string "title", default: "", null: false
-    t.string "owner", default: "", null: false
-    t.string "kind", default: "", null: false
-    t.string "additional_info", default: ""
-    t.integer "amount", default: 0, null: false
-    t.string "possessor_type"
-    t.bigint "possessor_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["possessor_id", "possessor_type"], name: "index_equipment_on_possessor_id_and_possessor_type"
-    t.index ["possessor_type", "possessor_id"], name: "index_equipment_on_possessor_type_and_possessor_id"
-  end
 
   create_table "facilities", force: :cascade do |t|
     t.string "title", default: "", null: false
@@ -65,25 +24,86 @@ ActiveRecord::Schema.define(version: 20170717074744) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "inventories", force: :cascade do |t|
+  create_table "storage_houses", force: :cascade do |t|
+    t.bigint "facility_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_storage_houses_on_facility_id"
+  end
+
+  create_table "storage_in_chem_consums", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "amount", default: 0, null: false
+    t.string "pack_form", null: false
+    t.string "por_type"
+    t.bigint "por_id"
+    t.float "ph_rate", null: false
+    t.string "purpose", null: false
+    t.text "additional_info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["por_id", "por_type"], name: "index_storage_in_chem_consums_on_por_id_and_por_type"
+    t.index ["por_type", "por_id"], name: "index_storage_in_chem_consums_on_por_type_and_por_id"
+  end
+
+  create_table "storage_in_consumables", force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.string "pack_form", default: "", null: false
+    t.integer "amount", default: 0, null: false
+    t.string "por_type"
+    t.bigint "por_id", null: false, comment: "possessor, due limitation 63 char"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["por_id", "por_type"], name: "index_storage_in_consumables_on_por_id_and_por_type"
+    t.index ["por_type", "por_id"], name: "index_storage_in_consumables_on_por_type_and_por_id"
+  end
+
+  create_table "storage_in_equipment", force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.string "owner", default: "", null: false
+    t.string "kind", default: "", null: false
+    t.string "additional_info", default: ""
+    t.integer "amount", default: 0, null: false
+    t.string "por_type"
+    t.bigint "por_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["por_id", "por_type"], name: "index_storage_in_equipment_on_por_id_and_por_type"
+    t.index ["por_type", "por_id"], name: "index_storage_in_equipment_on_por_type_and_por_id"
+  end
+
+  create_table "storage_in_invetories", force: :cascade do |t|
     t.string "title", default: "", null: false
     t.integer "amount", default: 0, null: false
     t.string "kind", default: "", null: false
-    t.string "possessor_type"
-    t.bigint "possessor_id", null: false
+    t.string "por_type"
+    t.bigint "por_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["possessor_id", "possessor_type"], name: "index_inventories_on_possessor_id_and_possessor_type"
-    t.index ["possessor_type", "possessor_id"], name: "index_inventories_on_possessor_type_and_possessor_id"
+    t.index ["por_id", "por_type"], name: "index_storage_in_invetories_on_por_id_and_por_type"
+    t.index ["por_type", "por_id"], name: "index_storage_in_invetories_on_por_type_and_por_id"
   end
 
-  create_table "storages", force: :cascade do |t|
-    t.bigint "facility_id", null: false
-    t.string "status", default: "awaits", null: false
-    t.string "name_class", null: false
+  create_table "storage_operation_additions", force: :cascade do |t|
+    t.bigint "facility_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["facility_id"], name: "index_storages_on_facility_id"
+    t.index ["facility_id"], name: "index_storage_operation_additions_on_facility_id"
+  end
+
+  create_table "storage_operation_write_offs", force: :cascade do |t|
+    t.bigint "facility_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_storage_operation_write_offs_on_facility_id"
+  end
+
+  create_table "storage_supply_applications", force: :cascade do |t|
+    t.string "status", default: "awaits", null: false
+    t.bigint "facility_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_storage_supply_applications_on_facility_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -104,5 +124,8 @@ ActiveRecord::Schema.define(version: 20170717074744) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "storages", "facilities"
+  add_foreign_key "storage_houses", "facilities"
+  add_foreign_key "storage_operation_additions", "facilities"
+  add_foreign_key "storage_operation_write_offs", "facilities"
+  add_foreign_key "storage_supply_applications", "facilities"
 end
