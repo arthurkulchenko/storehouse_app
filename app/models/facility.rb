@@ -12,7 +12,6 @@ class Facility < ApplicationRecord
   private
 
     def create_storehouse
-      # storage_house.create!
       Storage::House.create!(facility: self)
     end
 end

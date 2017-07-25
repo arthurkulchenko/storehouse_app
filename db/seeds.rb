@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create(name:"First User", email: "mail@mail.com", password: "123456")
+User.create(name:"First User", email: "mail@mail.com", password: "123456", role:'master')
 5.times do |f|
   @facility = Facility.create!(
                     title: "name ##{f}",
@@ -13,6 +13,5 @@ User.create(name:"First User", email: "mail@mail.com", password: "123456")
                     address: "address ##{f}",
                     manager: "manager ##{f}"
   	)
-  # Storage::House.create!(facility: @facility)
-  # Storage::SupplyApplication.create!(facility: @facility)
+  Storage::SupplyApplication.create!(facility: @facility)
 end

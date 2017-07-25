@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'facilities#index'
-  resources :facilities, except: [:new, :edit]
-  # TODO 2 controllers for adding applications and page to show all applications
-  resources :storehouse_applications, only: [:index, :create, :update]
-  resource :monthly_application, only: [:index] # OPTIMIZE
-  # resources :storage_operations, only: [:create, :update]
-  # TODO add controller inventarization
+  resources :facilities, shallow: true, except: [:new, :edit] do
+    resources :storage_house, only: [:show, :update]
+    resource :storage_application, only: [:create]
+    resource :inventarization, only: [:create]
+  end
+  resources :storehouse_applications, only: [:index, :update]
 end

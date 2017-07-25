@@ -1,3 +1,5 @@
-- @applications.each do |a|
- = "#{a.facility.title} - #{a.status}"
- %br
+.facilities-list
+  - @applications.each do |a|
+   .facility
+     = "#{a.facility.title} - #{a.status}"
+   %br

@@ -1,0 +1,2 @@
+module InventarizationHelper
+end
