@@ -1,16 +1,16 @@
 class StorehouseApplicationsController < ApplicationController
-  
+
   def index
-    @applications = Storage::SupplyApplication.bunch_per_month(3)
+    @applications = Storage::SupplyApplication.bunch_per_month(2)
   end
-  
+
   def update
-    Storage::SupplyApplication.find(parmas[:id]).update(storehouse_applications_params)
+    Storage::SupplyApplication.update(application_params)
   end
-  
+
   private
 
-    def storehouse_applications_params
-      params.require(class_eval("Storage::SupplyApplication")).permit(:status)
+    def application_params
+      params.require(:supply_application).permit(:status)
     end
 end

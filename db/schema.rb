@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724082217) do
+ActiveRecord::Schema.define(version: 20170725144218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,14 @@ ActiveRecord::Schema.define(version: 20170724082217) do
     t.index ["por_type", "por_id"], name: "index_storage_in_invetories_on_por_type_and_por_id"
   end
 
+  create_table "storage_inventarization_reports", force: :cascade do |t|
+    t.bigint "facility_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_storage_inventarization_reports_on_facility_id"
+  end
+
   create_table "storage_operation_additions", force: :cascade do |t|
     t.bigint "facility_id"
     t.datetime "created_at", null: false
@@ -126,6 +134,7 @@ ActiveRecord::Schema.define(version: 20170724082217) do
   end
 
   add_foreign_key "storage_houses", "facilities"
+  add_foreign_key "storage_inventarization_reports", "facilities"
   add_foreign_key "storage_operation_additions", "facilities"
   add_foreign_key "storage_operation_write_offs", "facilities"
   add_foreign_key "storage_supply_applications", "facilities"
