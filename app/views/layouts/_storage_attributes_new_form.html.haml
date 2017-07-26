@@ -13,11 +13,11 @@
 /    = render 'layouts/equipment_fields', f: s
 /   = link_to_add_association 'Добавить расходики', i, :equipment, partial: 'layouts/equipment_fields'
 /  %br
-.inventory
- = i.fields_for :inventory do |s|
-  = render 'layouts/inventory_fields', f: s
- = link_to_add_association 'Добавить расходики', i, :inventory, partial: 'layouts/inventory_fields'
-%br
-- %w(consumables chem_consums equipment ).each do |m|
+/ .inventory
+/  = i.fields_for :inventory do |s|
+/   = render 'layouts/inventory_fields', f: s
+/  = link_to_add_association 'Добавить расходики', i, :inventory, partial: 'layouts/inventory_fields'
+/ %br
+- %w(consumables chem_consums equipment inventory).each do |m|
  = render "layouts/storage_attr_partial", model_name: m, i: i
 / = models.each { |m| render "layouts/storage_attr_partial", model_name: m, i: i }

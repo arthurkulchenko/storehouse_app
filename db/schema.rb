@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725144218) do
+ActiveRecord::Schema.define(version: 20170726074129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,18 @@ ActiveRecord::Schema.define(version: 20170725144218) do
     t.datetime "updated_at", null: false
     t.index ["por_id", "por_type"], name: "index_storage_in_equipment_on_por_id_and_por_type"
     t.index ["por_type", "por_id"], name: "index_storage_in_equipment_on_por_type_and_por_id"
+  end
+
+  create_table "storage_in_inventories", force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.integer "amount", default: 0, null: false
+    t.string "kind", default: "", null: false
+    t.string "por_type"
+    t.bigint "por_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["por_id", "por_type"], name: "index_storage_in_inventories_on_por_id_and_por_type"
+    t.index ["por_type", "por_id"], name: "index_storage_in_inventories_on_por_type_and_por_id"
   end
 
   create_table "storage_in_invetories", force: :cascade do |t|
