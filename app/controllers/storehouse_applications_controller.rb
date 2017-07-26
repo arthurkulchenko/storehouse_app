@@ -11,6 +11,12 @@ class StorehouseApplicationsController < ApplicationController
   private
 
     def application_params
-      params.require(:supply_application).permit(:status)
+      params.require(:supply_application).permit(
+        :status, 
+        # consumables_attributes:[:id, :_destroy, :title, :pack_form, :amount],
+        # chem_consums_attributes:[:id, :_destroy, :title, :pack_form, :amount, :ph_rate, :purpose, :additional_info],
+        # inventory_attributes:[:id, :_destroy, :title, :amount, :kind],
+        # equipment_attributes:[:id, :_destroy, :title, :amount, :kind, :owner],
+        )
     end
 end

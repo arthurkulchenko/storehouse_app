@@ -3,6 +3,7 @@ module StorageContentAttributes
 
   included do
     belongs_to :por, polymorphic: true
-    validates :por_type, :por_id, :title, :amount, presence: true
+    validates :title, :amount, exclusion: { in: ["Название", "Количество", "Форма упаковки"], message: "'%{value}' не подходящее значение" }, presence: true
+    validates :por_type, :title, :amount, presence: true
   end
 end

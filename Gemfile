@@ -15,6 +15,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
+gem 'jquery-rails'
+gem 'cocoon'
 # gem 'mysql2'
 # gem 'thinking-sphinx'
 gem 'friendly_id'

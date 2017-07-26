@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20170725144218) do
 
   create_table "storage_inventarization_reports", force: :cascade do |t|
     t.bigint "facility_id"
-    t.string "status"
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["facility_id"], name: "index_storage_inventarization_reports_on_facility_id"
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 20170725144218) do
   end
 
   create_table "storage_supply_applications", force: :cascade do |t|
-    t.string "status", default: "awaits", null: false
+    t.integer "status", default: 0, null: false
     t.bigint "facility_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

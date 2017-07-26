@@ -1,7 +1,14 @@
 %h2.facility-name= @facility.title
 .application-new
 .inventarization-new
- = form_for [@facility, Storage::InventarizationReport.new], url: facility_storage_applications_path(@facility) do |i|
+ = form_for @facility.storage_inventarizations.new, url: facility_inventarization_reports_path(@facility) do |i|
+  = i.text_field :status, value: 'added'
+  = render 'layouts/storage_attributes_new_form', i: i
+  / .consumables
+  /  = i.fields_for :consumables do |s|
+  /   = render 'layouts/consumable_fields', f: s
+  /  = link_to_add_association 'Добавить расходики', i, :consumables, partial: 'layouts/consumable_fields', class: "add-fields-link"
+  / %br
   = i.submit 'Начать'
 %hr
 .applications-list
