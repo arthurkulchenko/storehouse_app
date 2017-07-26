@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  consumables: "Consumables"
+  inventory: "Inventory"
+  equipment: "Equipment"
+  chem_consums: "Chemical consumables"

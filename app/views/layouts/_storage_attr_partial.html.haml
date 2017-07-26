@@ -1,5 +1,5 @@
-.div{class: "#{model_name}"}
+.addings{class: "#{model_name}"}
+ = link_to_add_association "Добивить #{t model_name}", i, model_name.to_sym, partial: "layouts/#{model_name}_fields"
  = i.fields_for model_name do |s|
   = render "layouts/#{model_name}_fields", f: s
- = link_to_add_association model_name, i, model_name.to_sym, partial: "layouts/#{model_name}_fields"
-%br
+ 

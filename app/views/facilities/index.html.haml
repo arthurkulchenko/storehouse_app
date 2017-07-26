@@ -2,9 +2,10 @@
  - @facilities.each do |f|
   = link_to f.title, f
   %br
-.new-facility
- .show-button
- .showable
-  %h3 Новый объект
-  .new-facility
-   = render partial: 'new'
+- if current_user.mighty?
+ .new-facility
+  .show-button
+  .showable
+   %h3 Новый объект
+   .new-facility
+    = render partial: 'new'

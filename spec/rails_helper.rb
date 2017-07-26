@@ -11,6 +11,14 @@ require 'rspec/rails'
 require 'devise'
 require "pundit/rspec"
 
+RSpec.configure do |config|
+  config.include FactoryGirl::Syntax::Methods # IMPORTANT TO KEEP IT FIRST
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
+  config.include Devise::Test::IntegrationHelpers, type: :feature
+  config.extend ControllerMacros, type: :controller
+end
+
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec    
@@ -44,7 +52,6 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
