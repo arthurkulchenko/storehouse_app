@@ -1,4 +1,5 @@
-= form_for Facility.new, remote: true do |f|
+/ = form_for Facility.new, remote: true do |f|
+= form_for Facility.new do |f|
  = f.text_field :title, value: "Название"
  %br
  = f.text_field :address, value: "Адрес"

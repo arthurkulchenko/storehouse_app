@@ -3,7 +3,7 @@ ru:
   inventory: "Инвентарь"
   equipment: "Оборудование"
   chem_consums: "Расходные материалы (химия)"
-ru:
+  
   devise:
     confirmations:
       confirmed: "Ваша учётная запись подтверждена."

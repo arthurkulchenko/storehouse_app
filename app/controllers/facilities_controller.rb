@@ -2,11 +2,20 @@ class FacilitiesController < ApplicationController
   before_action :facility_load, only: [:show, :update, :destroy]
   
   def index
-    @facilities = Facility.all
+    respond_with(@facilities = Facility.all)
   end
 
   def create
-    Facility.create facilities_params 
+    @facility = Facility.create(facility_params)
+    respond_with @facility do |format|
+      if @facility.errors.any?
+        format.js { render json: @facility.errors.full_messages, status: 422 }
+        format.json { render json: @facility.errors.full_messages, status: 422 }
+      else
+        format.js { render nothing: true }
+        format.json { render json: @facility }
+      end
+    end
     # TODO posting new facility
   end
 
@@ -14,7 +23,7 @@ class FacilitiesController < ApplicationController
   end
 
   def update
-  	@facility.update facilities_params
+  	@facility.update facility_params
   end
 
   def destroy
@@ -27,7 +36,7 @@ class FacilitiesController < ApplicationController
       @facility = Facility.find params[:id]
     end
   
-    def facilities_params
+    def facility_params
       params.require(:facility).permit(:title, :supervisor, :address, :manager)
     end
 end
