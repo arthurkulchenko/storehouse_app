@@ -9,11 +9,16 @@ require 'rails_helper'
 
 RSpec.describe FacilitiesController, type: :controller do
   let!(:user){ create(:user) }
-  describe 'GET #index' do
+  let!(:facility){ create(:facility) }
+
+  describe 'POST #create' do
     context 'auth user' do
       sign_in_user
-      before { get :index }
+      before { post :create }
       it_behaves_like 'Respond with 200'
+      it 'assigns facilities' do
+        expect(assigns(:facility))
+      end
     end
     context 'unauth user' do
       before { get :index }
@@ -21,8 +26,6 @@ RSpec.describe FacilitiesController, type: :controller do
         expect(response).to_not be_success
       end
     end
-  end
-  describe 'POST #create' do
   end
   describe 'GET #show' do
   end
